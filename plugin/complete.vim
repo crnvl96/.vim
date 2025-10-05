@@ -3,10 +3,14 @@ vim9script
 #  ----------------------------------------------------------------------
 #  Command line autocomplete
 
-set wildmode=noselect:lastused,full
-set wildmenu wildoptions=pum,fuzzy pumheight=12
-set wildignore=*.o,*.obj,*.bak,*.exe,*.swp,tags
+set completeopt=menuone,noselect,noinsert,fuzzy,nosort
+set completefuzzycollect=keyword,files,whole_line
 set pummaxwidth=100
+set wildoptions=pum,fuzzy
+set wildignore+=.DS_Store
+set wildignorecase
+set wildmode=noselect:lastused,full
+set wildmenu
 
 augroup CmdlineComplete
     au!
