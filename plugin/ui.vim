@@ -1,5 +1,8 @@
 vim9script
 
+# ----------------------------------------------------------------------
+# UI
+
 set fillchars=foldopen:,foldclose:,fold:\ ,foldsep:\ ,diff:╱,eob:~
 set listchars=extends:…,nbsp:␣,precedes:…,tab:\ \ ,trail:·
 

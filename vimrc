@@ -61,4 +61,6 @@ Plug 'tpope/vim-fugitive'
 
 Plug 'junegunn/seoul256.vim'
 
+Plug 'yegappan/lsp'
+
 call plug#end()

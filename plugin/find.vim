@@ -1,5 +1,8 @@
 vim9script
 
+# ----------------------------------------------------------------------
+# Find
+
 var files_cache: list<string> = []
 
 augroup CmdlineEnterFilesCacheRefresh
