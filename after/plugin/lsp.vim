@@ -98,7 +98,7 @@ if exists("g:loaded_lsp")
 
     g:LspAddServer([{
         name: 'efm-langserver',
-        filetype: ['lua'],
+        filetype: ['lua', 'typescript'],
         path: 'efm-langserver',
         args: [],
         initializationOptions: {
@@ -110,7 +110,11 @@ if exists("g:loaded_lsp")
                     formatCommand: "stylua --color Never --stdin-filepath '${INPUT}' -",
                     formatStdin: true
                 }],
-            }
+                typescript: [{
+                    formatCommand: "prettier --stdin-filepath '${INPUT}'",
+                    formatStdin: true
+                }],
+            },
         }
     }])
 endif
