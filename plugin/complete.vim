@@ -3,7 +3,7 @@ vim9script
 #  ----------------------------------------------------------------------
 #  Command line autocomplete
 
-set completeopt=menuone,noselect,noinsert,fuzzy,nosort
+set completeopt=menuone,noselect,noinsert,fuzzy,nosort,popup
 set completefuzzycollect=keyword,files,whole_line
 set pummaxwidth=100
 set wildoptions=pum,fuzzy
@@ -11,8 +11,8 @@ set wildignore+=.DS_Store
 set wildignorecase
 set wildmode=noselect:lastused,full
 set wildmenu
+# set autocomplete
 set complete=.,o
-set completeopt=popup
 
 augroup CmdlineComplete
     au!

@@ -31,6 +31,7 @@ set shiftwidth=4
 set noshowcmd
 set noshowmode
 set sidescrolloff=24
+set laststatus=2
 set signcolumn=yes
 set smartcase
 set smartindent

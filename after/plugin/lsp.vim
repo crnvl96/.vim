@@ -19,7 +19,8 @@ if exists("g:loaded_lsp")
     nnoremap E :LspDiag current<cr>
     nnoremap K :LspHover<cr>
 
-    inoremap <c-k> :LspShowSignature<cr>
+    inoremap <c-x><c-o> <c-\><c-o>:call lsp#completion#LspComplete(v:true)<cr>
+
 
     g:LspOptionsSet({
         diagSignErrorText: 'E',
@@ -27,7 +28,7 @@ if exists("g:loaded_lsp")
         diagSignInfoText: 'I',
         diagSignWarningText: 'W',
         completionMatcher: 'fuzzy',
-        noNewlineInCompletion: true
+        showSignature: false,
     })
 
     g:LspAddServer([{
