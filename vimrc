@@ -51,6 +51,8 @@ set virtualedit=block
 set winminwidth=5
 set nowrap
 set nowritebackup
+set shortmess-=S
+set shortmess+=WcCat
 
 # ----------------------------------------------------------------------
 # Plug
@@ -64,5 +66,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'junegunn/seoul256.vim'
 
 Plug 'yegappan/lsp'
+
+Plug 'habamax/vim-shout'
 
 call plug#end()

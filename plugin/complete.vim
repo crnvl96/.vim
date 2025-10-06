@@ -11,6 +11,8 @@ set wildignore+=.DS_Store
 set wildignorecase
 set wildmode=noselect:lastused,full
 set wildmenu
+set complete=.,o
+set completeopt=popup
 
 augroup CmdlineComplete
     au!

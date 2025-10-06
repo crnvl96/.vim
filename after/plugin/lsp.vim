@@ -2,7 +2,6 @@ vim9script
 
 if exists("g:loaded_lsp")
     set omnifunc=g:LspOmniFunc
-    set complete+=o
 
     au BufWritePre * :LspFormat
 
@@ -30,6 +29,8 @@ if exists("g:loaded_lsp")
         diagSignHintText: 'H',
         diagSignInfoText: 'I',
         diagSignWarningText: 'W',
+        completionMatcher: 'fuzzy',
+        noNewlineInCompletion: true
     })
 
     g:LspAddServer([{
@@ -37,6 +38,9 @@ if exists("g:loaded_lsp")
         filetype: ['python'],
         path: 'pyright-langserver',
         args: ['--stdio'],
+        features: {
+            documentFormatting: false
+        },
         workspaceConfig: {
             pyright: {
                 disableOrganizeImports: true, # Using Ruff's import organizer
@@ -53,27 +57,13 @@ if exists("g:loaded_lsp")
     }])
 
     g:LspAddServer([{
-        name: 'ruff',
-        filetype: ['python'],
-        path: 'ruff',
-        args: ['server'],
-        initializationOptions: {
-            settings: {
-                logLevel: 'debug',
-                lint: { enable: true },
-                format: { backend: 'uv' },
-            },
-        },
-        capabilities: {
-            general: { positionEncodings: ['utf-16'] },
-        },
-    }])
-
-    g:LspAddServer([{
         name: 'gopls',
         filetype: ['go'],
         path: 'gopls',
         args: [],
+        features: {
+            documentFormatting: false
+        },
         workspaceConfig: {
             gopls: {
                 gofumpt: true
@@ -82,53 +72,12 @@ if exists("g:loaded_lsp")
     }])
 
     g:LspAddServer([{
-        name: 'tsgo',
-        filetype: ['typescript'],
-        path: 'tsgo',
-        args: ['--lsp', '--stdio'],
+        name: 'typescript-language-server',
+        filetype: ['typescript', 'javascript'],
+        path: 'typescript-language-server',
+        args: ['--stdio'],
         features: {
             documentFormatting: false,
         },
-    }])
-
-    g:LspAddServer([{
-        name: 'efm-langserver',
-        filetype: [
-            'lua',
-            'typescript',
-            'markdown',
-            'json',
-            'jsonc',
-            'yaml'
-        ],
-        path: 'efm-langserver',
-        args: [],
-        initializationOptions: {
-            documentFormatting: true,
-        },
-        workspaceConfig: {
-            languages: {
-                lua: [{
-                    formatCommand: "stylua --color Never --stdin-filepath '${INPUT}' -",
-                    formatStdin: true
-                }],
-                markdown: [{
-                    formatCommand: "prettier --parser markdown --stdin-filepath '${INPUT}'",
-                    formatStdin: true
-                }],
-                json: [{
-                    formatCommand: "prettier --parser json --stdin-filepath '${INPUT}'",
-                    formatStdin: true
-                }],
-                jsonc: [{
-                    formatCommand: "prettier --parser json --stdin-filepath '${INPUT}'",
-                    formatStdin: true
-                }],
-                yaml: [{
-                    formatCommand: "prettier --parser yaml --stdin-filepath '${INPUT}'",
-                    formatStdin: true
-                }],
-            },
-        }
     }])
 endif
