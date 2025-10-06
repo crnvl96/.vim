@@ -3,6 +3,8 @@ vim9script
 # ----------------------------------------------------------------------
 # Setup
 
+$PATH = $HOME .. '/.local/share/mise/installs/node/24.9.0/bin/' .. ':' .. $PATH
+
 g:mapleader = "\<Space>"
 g:maplocalleader = "\,"
 
