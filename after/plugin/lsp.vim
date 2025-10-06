@@ -3,8 +3,6 @@ vim9script
 if exists("g:loaded_lsp")
     set omnifunc=g:LspOmniFunc
 
-    au BufWritePre * :LspFormat
-
     nnoremap ]d :LspDiag next<cr>
     nnoremap [d :LspDiag prev<cr>
 
@@ -18,7 +16,6 @@ if exists("g:loaded_lsp")
     nnoremap ge :LspDiag show<cr>
     nnoremap gs :LspDocumentSymbol<cr>
 
-    nnoremap H :LspFormat<cr>
     nnoremap E :LspDiag current<cr>
     nnoremap K :LspHover<cr>
 
