@@ -1,5 +1,8 @@
 vim9script
 
+# ----------------------------------------------------------------------
+# Opts
+
 $PATH = $HOME .. '/.local/share/mise/installs/node/24.9.0/bin/' .. ':' .. $PATH
 
 packadd comment
