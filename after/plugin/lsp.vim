@@ -26,142 +26,109 @@ if exists("g:loaded_lsp")
     inoremap <c-k> :LspShowSignature<cr>
 
     g:LspOptionsSet({
-        autoComplete: true,
-        filterCompletionDuplicates: true,
-        completionMatcher: 'fuzzy',
-        usePopupInCodeAction: true,
-        showDiagOnStatusLine: false,
-        showDiagWithVirtualText: true,
-        diagVirtualTextAlign: 'after',
-        autoPopulateDiags: true,
-        popupHighlight: 'Pmenu',
+        diagSignErrorText: 'E',
+        diagSignHintText: 'H',
+        diagSignInfoText: 'I',
+        diagSignWarningText: 'W',
     })
 
-    g:LspAddServer([
-        {
-            name: 'pyright',
-            filetype: ['python'],
-            path: 'pyright-langserver',
-            args: ['--stdio'],
-            workspaceConfig: {
-                pyright: {
-                    disableOrganizeImports: true, # Using Ruff's import organizer
-                },
-                python: {
-                    analysis: {
-                        ignore: ['*'], # Ignore all files for analysis to exclusively use Ruff for linting
-                        autoSearchPaths: true,
-                        useLibraryCodeForTypes: true,
-                        diagnosticMode: 'openFilesOnly',
-                    },
-                },
-            }
-        },
-        {
-            name: 'ruff',
-            filetype: ['python'],
-            path: 'ruff',
-            args: ['server'],
-            initializationOptions: {
-                settings: {
-                    logLevel: 'debug',
-                    lint: { enable: true },
-                    format: { backend: 'uv' },
+    g:LspAddServer([{
+        name: 'pyright',
+        filetype: ['python'],
+        path: 'pyright-langserver',
+        args: ['--stdio'],
+        workspaceConfig: {
+            pyright: {
+                disableOrganizeImports: true, # Using Ruff's import organizer
+            },
+            python: {
+                analysis: {
+                    ignore: ['*'], # Ignore all files for analysis to exclusively use Ruff for linting
+                    autoSearchPaths: true,
+                    useLibraryCodeForTypes: true,
+                    diagnosticMode: 'openFilesOnly',
                 },
             },
-            capabilities: {
-                general: { positionEncodings: ['utf-16'] },
+        }
+    }])
+
+    g:LspAddServer([{
+        name: 'ruff',
+        filetype: ['python'],
+        path: 'ruff',
+        args: ['server'],
+        initializationOptions: {
+            settings: {
+                logLevel: 'debug',
+                lint: { enable: true },
+                format: { backend: 'uv' },
             },
         },
-        {
-            name: 'gopls',
-            filetype: ['go'],
-            path: 'gopls',
-            args: [],
-            workspaceConfig: {
-                gopls: {
-                    gofumpt: true
-                },
-            }
+        capabilities: {
+            general: { positionEncodings: ['utf-16'] },
         },
-        {
-            name: 'vscode-eslint-language-server',
-            filetype: ['typescript'],
-            path: 'vscode-eslint-language-server',
-            args: ['--stdio'],
-            features: {
-                documentFormatting: false,
-                diagnostics: true
+    }])
+
+    g:LspAddServer([{
+        name: 'gopls',
+        filetype: ['go'],
+        path: 'gopls',
+        args: [],
+        workspaceConfig: {
+            gopls: {
+                gofumpt: true
             },
-            workspaceConfig: {
-                validate: 'on',
-                packageManager: null,
-                useESLintClass: false,
-                experimental: { useFlatConfig: false },
-                codeActionOnSave: { enable: false, mode: 'all' },
-                format: false,
-                quiet: false,
-                onIgnoredFiles: 'off',
-                options: {},
-                rulesCustomizations: {},
-                run: 'onType',
-                problems: { shortenToSingleLine: false },
-                nodePath: '',
-                workingDirectory: { mode: 'location' },
-                codeAction: {
-                    disableRuleComment: { enable: true, location: 'separateLine' },
-                    showDocumentation: { enable: true },
-                },
-            },
+        }
+    }])
+
+    g:LspAddServer([{
+        name: 'tsgo',
+        filetype: ['typescript'],
+        path: 'tsgo',
+        args: ['--lsp', '--stdio'],
+        features: {
+            documentFormatting: false,
         },
-        {
-            name: 'efm-langserver',
-            filetype: [
-                'lua',
-                'typescript',
-                'markdown',
-                'json',
-                'jsonc',
-                'yaml'
-            ],
-            path: 'efm-langserver',
-            args: [],
-            initializationOptions: {
-                documentFormatting: true,
-                diagnostics: false
-            },
-            features: {
-                documentFormatting: true,
-                diagnostics: false
-            },
-            workspaceConfig: {
-                languages: {
-                    lua: [{
-                        formatCommand: "stylua --color Never --stdin-filepath '${INPUT}' -",
-                        formatStdin: true
-                    }],
-                    typescript: [{
-                        formatCommand: "prettier --stdin-filepath '${INPUT}'",
-                        formatStdin: true
-                    }],
-                    markdown: [{
-                        formatCommand: "prettier --parser markdown --stdin-filepath '${INPUT}'",
-                        formatStdin: true
-                    }],
-                    json: [{
-                        formatCommand: "prettier --parser json --stdin-filepath '${INPUT}'",
-                        formatStdin: true
-                    }],
-                    jsonc: [{
-                        formatCommand: "prettier --parser json --stdin-filepath '${INPUT}'",
-                        formatStdin: true
-                    }],
-                    yaml: [{
-                        formatCommand: "prettier --parser yaml --stdin-filepath '${INPUT}'",
-                        formatStdin: true
-                    }],
-                },
-            }
+    }])
+
+    g:LspAddServer([{
+        name: 'efm-langserver',
+        filetype: [
+            'lua',
+            'typescript',
+            'markdown',
+            'json',
+            'jsonc',
+            'yaml'
+        ],
+        path: 'efm-langserver',
+        args: [],
+        initializationOptions: {
+            documentFormatting: true,
         },
-    ])
+        workspaceConfig: {
+            languages: {
+                lua: [{
+                    formatCommand: "stylua --color Never --stdin-filepath '${INPUT}' -",
+                    formatStdin: true
+                }],
+                markdown: [{
+                    formatCommand: "prettier --parser markdown --stdin-filepath '${INPUT}'",
+                    formatStdin: true
+                }],
+                json: [{
+                    formatCommand: "prettier --parser json --stdin-filepath '${INPUT}'",
+                    formatStdin: true
+                }],
+                jsonc: [{
+                    formatCommand: "prettier --parser json --stdin-filepath '${INPUT}'",
+                    formatStdin: true
+                }],
+                yaml: [{
+                    formatCommand: "prettier --parser yaml --stdin-filepath '${INPUT}'",
+                    formatStdin: true
+                }],
+            },
+        }
+    }])
 endif
