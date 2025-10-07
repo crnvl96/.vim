@@ -66,6 +66,7 @@ enddef
 
 
 nnoremap H mzgggqG`z:delmarks z<cr>zz
+vnoremap H gqzz
 
 nnoremap <leader>x :execute <SID>ToggleQuickfix()<CR>
 vnoremap <leader>A :!column -t<cr>
