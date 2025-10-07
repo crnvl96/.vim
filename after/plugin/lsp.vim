@@ -29,6 +29,7 @@ if exists("g:loaded_lsp")
         diagSignWarningText: 'W',
         completionMatcher: 'fuzzy',
         showSignature: false,
+        autoHighlightDiags: false,
     })
 
     g:LspAddServer([{
