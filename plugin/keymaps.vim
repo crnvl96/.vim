@@ -64,6 +64,9 @@ def ToggleQuickfix(): string
     endif
 enddef
 
+
+nnoremap H mzgggqG`z:delmarks z<cr>zz
+
 nnoremap <leader>x :execute <SID>ToggleQuickfix()<CR>
 vnoremap <leader>A :!column -t<cr>
 
