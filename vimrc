@@ -8,9 +8,7 @@ g:mapleader      =  "\<Space>"
 g:maplocalleader =  "\,"
 
 set autoindent
-set textwidth=80
 set autoread
-set formatoptions=tcqj2nap
 set autowrite
 set breakindent
 set clipboard=unnamedplus
