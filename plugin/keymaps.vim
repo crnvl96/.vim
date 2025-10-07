@@ -8,9 +8,9 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-l> <c-w>l
 
-nnoremap <c-left> :vertical resize -20<cr>
-nnoremap <c-down> :resize -5<cr>
-nnoremap <c-up> :resize +5<cr>
+nnoremap <c-left>  :vertical resize -20<cr>
+nnoremap <c-down>  :resize -5<cr>
+nnoremap <c-up>    :resize +5<cr>
 nnoremap <c-right> :vertical resize +20<cr>
 
 nnoremap <c-d> <c-d>zz
@@ -65,3 +65,5 @@ def ToggleQuickfix(): string
 enddef
 
 nnoremap <leader>x :execute <SID>ToggleQuickfix()<CR>
+vnoremap <leader>A :!column -t<cr>
+

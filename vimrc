@@ -2,11 +2,10 @@ vim9script
 
 # ----------------------------------------------------------------------
 # Setup
+#
 
-$PATH = $HOME .. '/.local/share/mise/installs/node/24.9.0/bin/' .. ':' .. $PATH
-
-g:mapleader = "\<Space>"
-g:maplocalleader = "\,"
+g:mapleader      =  "\<Space>"
+g:maplocalleader =  "\,"
 
 set autoindent
 set autoread
@@ -57,17 +56,14 @@ set shortmess+=WcCat
 
 # ----------------------------------------------------------------------
 # Plug
+#
 
 call plug#begin()
 
 Plug 'habamax/vim-dir'
-
 Plug 'tpope/vim-fugitive'
-
 Plug 'junegunn/seoul256.vim'
-
 Plug 'yegappan/lsp'
-
 Plug 'habamax/vim-shout'
 
 call plug#end()

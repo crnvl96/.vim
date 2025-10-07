@@ -5,13 +5,11 @@ vim9script
 
 var files_cache: list<string> = []
 
-augroup CmdlineEnterFilesCacheRefresh
-    au!
-    au CmdlineEnter : files_cache = []
-augroup END
+au CmdlineEnter : files_cache = []
 
 def FindCmd(): string
     var cmd = ''
+
     if executable('fd')
         cmd = 'fd . --path-separator / --type f --hidden --follow --exclude .git'
     elseif executable('fdfind')
@@ -23,6 +21,7 @@ def FindCmd(): string
     elseif executable('find')
         cmd = 'find \! \( -path "*/.git" -prune -o -name "*.swp" \) -type f -follow'
     endif
+
     return cmd
 enddef
 
@@ -37,6 +36,7 @@ def Find(cmd_arg: string, cmd_complete: bool): list<string>
             files_cache = systemlist(cmd)
         endif
     endif
+
     if empty(cmd_arg)
         return files_cache
     else
