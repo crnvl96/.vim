@@ -7,6 +7,10 @@ vim9script
 g:mapleader      =  "\<Space>"
 g:maplocalleader =  "\,"
 
+# ----------------------------------------------------------------------
+# Opts
+#
+
 set autoindent
 set autoread
 set autowrite
@@ -30,8 +34,8 @@ set shiftwidth=4
 set noshowcmd
 set noshowmode
 set sidescrolloff=24
-set laststatus=2
-set signcolumn=yes
+set laststatus=0
+set signcolumn=no
 set smartcase
 set smartindent
 set smoothscroll

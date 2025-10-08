@@ -36,7 +36,6 @@ def Find(cmd_arg: string, cmd_complete: bool): list<string>
             files_cache = systemlist(cmd)
         endif
     endif
-
     if empty(cmd_arg)
         return files_cache
     else
