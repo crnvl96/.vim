@@ -71,3 +71,19 @@ vnoremap H gqzz
 nnoremap <leader>x :execute <SID>ToggleQuickfix()<CR>
 vnoremap <leader>A :!column -t<cr>
 
+# Emacs C-s C-w like solution: hightlight in visual mode and then type * or #
+# `cgn` to replace text
+# https://vonheikemen.github.io/devlog/tools/how-to-survive-without-multiple-cursors-in-vim/
+xnoremap * :<c-u> call <SID>VSetSearch('/')<CR>/<C-R>=@/<CR><CR>
+xnoremap # :<c-u> call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
+
+def VSetSearch(cmdtype: string)
+  var temp = getreg('s') # 's' is some register
+  norm! gv"sy
+  call setreg('/', '\V' .. substitute(escape(@s, cmdtype .. '\'), '\n', '\\n', 'g'))
+  call setreg('s', temp) # restore whatever was in 's'
+enddef
+
+# visually select recent pasted (or typed) text
+#   remember `] takes you to end of pasted buffer, or use 'gp' to paste
+nnoremap gs `[v`]

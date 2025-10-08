@@ -53,6 +53,7 @@ set undolevels=10000
 set updatetime=300
 set virtualedit=block
 set winminwidth=5
+set hlsearch
 set nowrap
 set nowritebackup
 set shortmess-=S
